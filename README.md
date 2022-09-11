@@ -1,6 +1,6 @@
 # Important Info about the 3001 Arm and Troubleshooting Methods
 
-## Having Trouble With Your Robot:
+## Having Trouble With Your Robot
 
 See [this document](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
 
