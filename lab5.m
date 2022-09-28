@@ -10,7 +10,6 @@ format short
 %% Flags
 DEBUG = false;
 STICKMODEL = false;
-DEBUG_CAM = false;
 
 %% Setup
 vid = hex2dec('16c0');
@@ -36,7 +35,6 @@ myHIDSimplePacketComs.connect();
 robot = Robot(myHIDSimplePacketComs);
 
 cam = Camera();
-cam.DEBUG = DEBUG_CAM;
 
 %% Place Poses per color
 purple_place = [150, -50, 11];
