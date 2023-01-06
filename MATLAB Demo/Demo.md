@@ -1,4 +1,4 @@
-###MATLAB Demo
+### MATLAB Demo
 
 This folder contains demo code for saving variables in a workspace, plotting, and using `syms` and `solve`. 
 
