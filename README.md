@@ -4,6 +4,14 @@
 
 See [this document](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
 
+## Calibration Procedure
+1. Disable the motors using the switch
+2. Move the robot to the calibrate position
+3. Press and hold the `Home` button until the LED flashes.
+4. Re-enable the motors
+
+#### Do NOT just hold the `Home` button to reset the robot; it will force the robot to violently slam the table. Disable motors, then manually move the robot to the calibration pose.
+
 ## Robot Info
 
 Link Lenghts:
