@@ -2,7 +2,7 @@
 
 ## Having Trouble With Your Robot
 
-See [this document](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
+See [the troubleshooting guide](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
 
 ## Calibration Procedure
 1. Disable the motors using the switch
