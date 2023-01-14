@@ -33,3 +33,6 @@ these instructions are for the various problems people have run into
 - Drag and drop the `CURRENT.UF2` file to the new device
 - A window should pop-up asking saying the file exists, hit replace
 - Finally, the red light should be pulsing on the itsybitsy hold down the home button to recalibrate it.`
+
+## `Firefox cannot open because it's already open`:
+- run `rm ~/.mozilla/firefox/<random numbers and letters>.default-release/.parentlock`
