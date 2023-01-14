@@ -1,6 +1,6 @@
 # Troubleshooting
 
-these instructions are for the various problems people have run into
+These instructions are for the various problems people have run into
 
 ## I power cycle the robot and the LED button to calibrate is not turning on
 
