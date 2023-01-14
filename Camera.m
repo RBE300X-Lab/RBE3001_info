@@ -5,18 +5,42 @@ classdef Camera < handle
     
     properties        
         % Properties
-        params;
-        cam;
-        cam_pose;
-        cam_IS;
+        params;     % Camera Parameters
+        cam;        % Webcam Object
+        cam_pose;   % Camera Pose (transformation matrix)
+        cam_IS;     % Camera Intrinsics
+        cam_R;      % Camera Rotation Matrix
+        cam_T;      % Camera Translation Vector
     end
     
     methods
         function self = Camera()
             % CAMERA Construct an instance of this class
+            % make sure that the webcam can see the whole checkerboard by
+            % running webcam(2).preview in the Command Window
             self.cam = webcam(2); % Get camera object
             self.params = self.calibrate(); % Run Calibration Function
-            [self.cam_IS, self.cam_pose] = self.getCameraPose();
+            [self.cam_IS, self.cam_pose] = self.calculateCameraPos();
+        end
+
+        function tForm = getTForm(self)
+            tForm = rigid3d([ self.cam_R, zeros(3,1); self.cam_T, 1 ]);
+        end
+
+        function cam_pose = getCameraPose(self)
+            cam_pose = self.cam_pose;
+        end
+
+        function cam_IS = getCameraInstrinsics(self)
+            cam_IS = self.cam_IS;
+        end
+
+        function cam_R = getRotationMatrix(self)
+            cam_R = self.cam_R;
+        end
+
+        function cam_T = getTranslationVector(self)
+            cam_T = self.cam_T;
         end
 
         function shutdown(self)
@@ -56,8 +80,8 @@ classdef Camera < handle
         end
 
         
-        function [newIs, pose] = getCameraPose(self)
-            % GETCAMERAPOSE Get transformation from camera to checkerboard frame
+        function [newIs, pose] = calculateCameraPos(self)  % DO NOT USE
+            % calculateCameraPos Get transformation from camera to checkerboard frame
             % This function will get the camera position based on checkerboard.
             % You should run this function every time the camera position is changed.
             % It will calculate the extrinsics, and output to a transformation matrix.
@@ -72,10 +96,18 @@ classdef Camera < handle
             [imagePoints, boardSize] = detectCheckerboardPoints(img, 'PartialDetections', false);
             % 4. Compute transformation
             self.params.WorldPoints = self.params.WorldPoints(self.params.WorldPoints(:, 2) <= (boardSize(1)-1)*25, :);
-            disp(self.params.WorldPoints);
-            disp(boardSize);
+
+            worldPointSize = size(self.params.WorldPoints);
+            imagePointSize = size(imagePoints);
+            fprintf("World Points is %d x %d\n", worldPointSize(1), worldPointSize(2));
+            fprintf("Image Points is %d x %d\n", imagePointSize(1), imagePointSize(2));
+            fprintf("The checkerboard is %d squares long x %d squares wide\n", boardSize(1), boardSize(2));
+
             % 4. Compute transformation
             [R, t] = extrinsics(imagePoints, self.params.WorldPoints, newIs);
+
+            self.cam_R = R;
+            self.cam_T = t;
             
             pose = [   R,    t';
                     0, 0, 0, 1];

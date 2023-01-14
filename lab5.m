@@ -1,6 +1,5 @@
 %%
 % RBE 3001 Lab 5 example code!
-% Developed by Alex Tacescu (https://alextac.com)
 %%
 clc;
 clear;
@@ -20,6 +19,7 @@ if DEBUG
     disp(pid);
 end
 
+
 javaaddpath ../lib/SimplePacketComsJavaFat-0.6.4.jar;
 import edu.wpi.SimplePacketComs.*;
 import edu.wpi.SimplePacketComs.device.*;
@@ -34,13 +34,15 @@ myHIDSimplePacketComs.connect();
 
 robot = Robot(myHIDSimplePacketComs);
 
-cam = Camera();
-
-%% Place Poses per color
-purple_place = [150, -50, 11];
-green_place = [150, 50, 11];
-pink_place = [75, -125, 11];
-yellow_place = [75, 125, 11];
+try
+    load("camParams.mat");
+    disp("Loaded Camera Parameters from camParams.mat");
+catch exception
+    disp("Could not find camParams.mat, creating new Camera object");
+    cam = Camera();
+    save("camParams.mat","cam");
+    disp("Saved Camera Parameters to camParams.mat");
+end
 
 %% Main Loop
 try
@@ -48,8 +50,7 @@ try
     if cam.params == 0
         error("No camera parameters found!");
     end
-    cam.cam_pose = cam.getCameraPose();
-    
+    imshow(cam.getImage());
     
     
 catch exception
