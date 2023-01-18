@@ -4,6 +4,10 @@
 
 See [the troubleshooting guide](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
 
+## [Robot Communication Protocol](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/protocol.md)
+
+This has all the information you need to communicate with your robot and it's motors.
+
 ## Calibration Procedure
 1. Disable the motors using the switch
 2. Move the robot to the calibrate position
