@@ -2,9 +2,13 @@
 
 ## Having Trouble With Your Robot
 
-See [the troubleshooting guide](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
+See the [Troubleshooting Guide](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/troubleshooting.md)
 
-## [Robot Communication Protocol](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/protocol.md)
+If there is something missing from this guide, tell the SAs.
+
+## Robot Communication Protocol
+
+See the [Protocol Documentation](https://github.com/RBE300X-Lab/RBE3001_info/blob/main/protocol.md)
 
 This has all the information you need to communicate with your robot and it's motors.
 
