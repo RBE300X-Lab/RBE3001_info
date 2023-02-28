@@ -11,6 +11,7 @@ classdef Camera < handle
         cam_IS;     % Camera Intrinsics
         cam_R;      % Camera Rotation Matrix
         cam_T;      % Camera Translation Vector
+        cam_TForm   % Camera Rigid 3D TForm
     end
     
     methods
@@ -24,7 +25,7 @@ classdef Camera < handle
         end
 
         function tForm = getTForm(self)
-            tForm = rigid3d([ self.cam_R, zeros(3,1); self.cam_T, 1 ]);
+            tForm = self.cam_TForm;
         end
 
         function cam_pose = getCameraPose(self)
@@ -108,6 +109,7 @@ classdef Camera < handle
 
             self.cam_R = R;
             self.cam_T = t;
+            self.cam_TForm = rigid3d([ self.cam_R, zeros(3,1); self.cam_T, 1 ]);
             
             pose = [   R,    t';
                     0, 0, 0, 1];
